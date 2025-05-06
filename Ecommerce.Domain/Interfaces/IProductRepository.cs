@@ -3,7 +3,11 @@ using Ecommerce.Domain.Interfaces.Base;
 
 namespace Ecommerce.Domain.Interfaces
 {
-    public interface IProductRepository: ICreateRepository<Product>, IGetAllRepository<Product>, IGetOneRepository<Product>
+    public interface IProductRepository: 
+        ICreateRepository<Product>, 
+        IGetAllRepository<Product>, 
+        IGetOneRepository<Product>,
+        IUpdateRepository<Product>
     {
     }
 }

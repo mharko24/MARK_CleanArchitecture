@@ -30,5 +30,16 @@ namespace Ecommerce.Persistence.Repositories
         {
             return await _db.Products.FirstOrDefaultAsync(x => x.ProductId ==id);
         }
+
+        public async Task UpdateAsync(Product t, Guid id, CancellationToken cancellationToken)
+        {
+            var exist = await GetOneAsync(id);
+            if(exist != null)
+            {
+                _db.Products.Entry(t).CurrentValues.SetValues(t);
+                await _db.SaveChangesAsync(cancellationToken);
+
+            }
+        }
     }
 }
