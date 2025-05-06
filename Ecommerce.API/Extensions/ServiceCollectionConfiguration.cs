@@ -1,4 +1,8 @@
-﻿using Ecommerce.Persistence.Data;
+﻿using Ecommerce.Application.Abstractions.Products.Command.CreateProduct;
+using Ecommerce.Application.Profiles;
+using Ecommerce.Domain.Interfaces;
+using Ecommerce.Persistence.Data;
+using Ecommerce.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.API.Extensions
@@ -7,7 +11,8 @@ namespace Ecommerce.API.Extensions
     {
         public static void  AddApplicationDependencies(this IServiceCollection services)
         {
-            services.AddMediatR(options => options.RegisterServicesFromAssembly(typeof(Program).Assembly));
+            services.AddMediatR(options => options.RegisterServicesFromAssembly(typeof(CreateProductCommand).Assembly));
+            services.AddAutoMapper(typeof(ProductProfile));
         }
 
         public static void AddPersistenceDependencies(this IServiceCollection services, IConfiguration configuration)
@@ -20,6 +25,7 @@ namespace Ecommerce.API.Extensions
             });
 
             services.AddScoped<AppDbContext>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         public static void AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
