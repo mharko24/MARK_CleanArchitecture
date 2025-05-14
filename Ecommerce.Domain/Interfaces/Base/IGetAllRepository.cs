@@ -4,6 +4,6 @@ namespace Ecommerce.Domain.Interfaces.Base
 {
     public interface IGetAllRepository<T>
     {
-        Task<IEnumerable<Product>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync();
     }
 }

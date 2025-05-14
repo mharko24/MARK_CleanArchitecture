@@ -1,4 +1,5 @@
 using Ecommerce.API.Extensions;
+using Ecommerce.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<CustomResponseMiddleware>();
 
 app.MapControllers();
 

@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
 using Ecommerce.Application.DTOs.Products;
-using Ecommerce.Domain.Interfaces;
+using Ecommerce.Domain.Entities;
+using Ecommerce.Domain.Interfaces.Base;
 using MediatR;
 
 namespace Ecommerce.Application.Abstractions.Products.Queries.GetProductById
 {
     public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ProductDto?>
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IBaseRepository<Product> _productRepository;
         private readonly IMapper _mapper;
 
-        public GetProductByIdQueryHandler(IProductRepository productRepository, IMapper mapper)
+        public GetProductByIdQueryHandler(IBaseRepository<Product> productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
             _mapper = mapper;

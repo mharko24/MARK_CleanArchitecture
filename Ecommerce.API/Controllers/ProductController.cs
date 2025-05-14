@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Application.Abstractions.Products.Command.CreateProduct;
+using Ecommerce.Application.Abstractions.Products.Command.DeleteProduct;
 using Ecommerce.Application.Abstractions.Products.Command.UpdateProduct;
 using Ecommerce.Application.Abstractions.Products.Queries.GetAllProducts;
 using Ecommerce.Application.Abstractions.Products.Queries.GetProductById;
@@ -22,8 +23,7 @@ namespace Ecommerce.API.Controllers
         [HttpPost("createproduct")]
         public async Task<ActionResult> CreateProduct(CreateProductDto product)
         {
-            var productCommand = new CreateProductCommand(product);
-            var productId = await _mediator.Send(productCommand);
+            var productId = await _mediator.Send(new CreateProductCommand(product));
             return Ok(productId);
 
         }
@@ -38,7 +38,6 @@ namespace Ecommerce.API.Controllers
         [HttpGet("getproduct/{id}")]
         public async Task<ActionResult> GetProduct(Guid id)
         {
-            //var productId = new GetProductByIdQuery(id);
             var product = await _mediator.Send(new GetProductByIdQuery(id));
             if(product is null)
             {
@@ -59,6 +58,20 @@ namespace Ecommerce.API.Controllers
 
             var mapProduct = await _mediator.Send(new UpdateProductCommand(producDto));
             return Ok(mapProduct);
+        }
+
+        [HttpDelete("deleteproduct/{id}")]
+        public async Task<ActionResult> DeleteProduct(Guid id)
+        {
+            var product = await _mediator.Send(new GetProductByIdQuery(id));
+            if(product is null)
+            {
+                return NotFound($"The product with product id :{id} does not exist");
+            }
+             await _mediator.Send(new DeleteProductCommand(id));
+            return Ok($"Successfully deleted the Product id: {id}");
+
+
         }
     }
 }

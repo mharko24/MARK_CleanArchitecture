@@ -21,17 +21,27 @@ namespace Ecommerce.Persistence.Repositories
             await _db.SaveChangesAsync(cancellationToken);
         }
 
+        public async Task DeleteAsync(object id, CancellationToken cancellationToken)
+        {
+            var product = await GetOneAsync(id);
+            if (product != null)
+            {
+                _db.Products.Remove(product);
+                await _db.SaveChangesAsync(cancellationToken);
+            }
+        }
+
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
             return await _db.Products.ToListAsync();
         }
 
-        public async Task<Product> GetOneAsync(Guid id)
+        public async Task<Product> GetOneAsync(object id)
         {
-            return await _db.Products.FirstOrDefaultAsync(x => x.ProductId ==id);
+            return await _db.Products.FindAsync(id);
         }
 
-        public async Task UpdateAsync(Product t, Guid id, CancellationToken cancellationToken)
+        public async Task UpdateAsync(Product t, object id, CancellationToken cancellationToken)
         {
             var exist = await GetOneAsync(id);
             if(exist != null)

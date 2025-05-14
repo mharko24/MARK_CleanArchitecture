@@ -2,6 +2,6 @@
 {
     public interface IGetOneRepository<T>
     {
-        Task<T> GetOneAsync(Guid id);
+        Task<T> GetOneAsync(object id);
     }
 }

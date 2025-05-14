@@ -7,7 +7,9 @@ namespace Ecommerce.Domain.Interfaces
         ICreateRepository<Product>, 
         IGetAllRepository<Product>, 
         IGetOneRepository<Product>,
-        IUpdateRepository<Product>
+        IUpdateRepository<Product>,
+        IDeleteOneRepository<Product>
+
     {
     }
 }

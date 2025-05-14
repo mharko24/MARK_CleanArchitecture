@@ -2,6 +2,6 @@
 {
     public interface IUpdateRepository<T>
     {
-        Task UpdateAsync(T t, Guid id,CancellationToken cancellationToken);
+        Task UpdateAsync(T t, object id,CancellationToken cancellationToken);
     }
 }
