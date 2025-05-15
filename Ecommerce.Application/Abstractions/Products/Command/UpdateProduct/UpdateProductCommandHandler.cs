@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Ecommerce.Application.Abstractions.Products.Command.UpdateProduct
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, ProductDto>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
     {
         private readonly IBaseRepository<Product> _productRepository;
         private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ namespace Ecommerce.Application.Abstractions.Products.Command.UpdateProduct
             _productRepository = productRepository;
             _mapper = mapper;
         }
-        public async Task<ProductDto> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             //var product = new Product()
             //{
@@ -31,7 +31,6 @@ namespace Ecommerce.Application.Abstractions.Products.Command.UpdateProduct
             //};
             var product = _mapper.Map<Product>(request.dto);
             await _productRepository.UpdateAsync(product, product.ProductId, cancellationToken);
-            return request.dto;
 
         }
     }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Ecommerce.Persistence.Entities
+namespace Ecommerce.Application.Entities
 {
     public class UserApp:IdentityUser
     {

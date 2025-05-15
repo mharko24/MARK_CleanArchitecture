@@ -56,8 +56,8 @@ namespace Ecommerce.API.Controllers
                 return NotFound($"The product with product id :{producDto.ProductId} does not exist");
             }
 
-            var mapProduct = await _mediator.Send(new UpdateProductCommand(producDto));
-            return Ok(mapProduct);
+             await _mediator.Send(new UpdateProductCommand(producDto));
+            return Ok($"Successfully updated with the id: {producDto.ProductId}");
         }
 
         [HttpDelete("deleteproduct/{id}")]

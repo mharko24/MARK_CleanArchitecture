@@ -3,6 +3,6 @@ using MediatR;
 
 namespace Ecommerce.Application.Abstractions.Products.Command.UpdateProduct
 {
-    public record UpdateProductCommand(ProductDto dto):IRequest<ProductDto>;
+    public record UpdateProductCommand(ProductDto dto):IRequest;
 
 }

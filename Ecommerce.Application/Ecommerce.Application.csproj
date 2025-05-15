@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.14" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Users\" />
+    <Folder Include="Abstractions\Users\Queries\" />
   </ItemGroup>
 
 </Project>
