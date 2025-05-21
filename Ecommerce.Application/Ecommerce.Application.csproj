@@ -19,5 +19,10 @@
   <ItemGroup>
     <Folder Include="Abstractions\Users\Queries\" />
   </ItemGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalVisibleTo">
+			<_Parameter1>Ecommerce.Application.Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 
 </Project>
